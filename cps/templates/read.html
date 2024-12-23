@@ -211,11 +211,13 @@
           document.getElementById(id).querySelector("span").textContent = "✓";
           reader.rendition.spread(id==='spread'?true:'none');
         }
-        reader.rendition.spread('none');
       </script>
       <script src="{{ url_for('static', filename='js/libs/screenfull.min.js') }}"></script>
       <script src="{{ url_for('static', filename='js/libs/reader.min.js') }}"></script>
       <script src="{{ url_for('static', filename='js/reading/epub.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/reading/epub-progress.js') }}"></script>      
+      <script src="{{ url_for('static', filename='js/reading/epub-progress.js') }}"></script>
+    <script type="text/javascript">
+        reader.rendition.spread('none');
+    </script>
     </body>
 </html>
