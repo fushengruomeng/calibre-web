@@ -217,15 +217,19 @@
       <script src="{{ url_for('static', filename='js/reading/epub.js') }}"></script>
       <!-- <script src="{{ url_for('static', filename='js/reading/epub-progress.js') }}"></script> -->
     <script type="text/javascript">
-        // reader.rendition.spread('none');
-        const isIOS = /iPhone|iPod/i.test(navigator.userAgent);
-        const isWeChat = navigator.userAgent.toLowerCase().indexOf('micromessenger') != -1;
-        if (isIOS || isWeChat) {
-            $("#fullscreen").hide();
-        }
-        if (isWeChat) {
-            reader.rendition.spread('none');
-        }
+        $(document).ready(function() {
+            const isIOS = /iPhone|iPod/i.test(navigator.userAgent);
+            const isWeChat = navigator.userAgent.toLowerCase().indexOf('micromessenger') != -1;
+
+            $("#viewer iframe").on('load', function() {
+                if (isIOS || isWeChat) {
+                    $("#fullscreen").hide();
+                }
+                //reader.rendition.spread('auto');
+                //reader.rendition.layout();
+            });
+        });
+
     </script>
     </body>
 </html>
