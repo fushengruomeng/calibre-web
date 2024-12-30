@@ -35,19 +35,19 @@ var reader;
     reader.rendition.on('touchend', function(event) {
       touchEnd = event.changedTouches[0].screenX;
         if (touchStart < touchEnd) {
-            if(reader.book.package.metadata.direction === "rtl") {
-    			reader.rendition.next();
-    		} else {
+            //if(reader.book.package.metadata.direction === "rtl") {
+    		//	reader.rendition.next();
+    		//} else {
     			reader.rendition.prev();
-    		}
+    		//}
             // Swiped Right
         }
         if (touchStart > touchEnd) {
-            if(reader.book.package.metadata.direction === "rtl") {
-    			reader.rendition.prev();
-    		} else {
+            //if(reader.book.package.metadata.direction === "rtl") {
+    		//	reader.rendition.prev();
+    		//} else {
                 reader.rendition.next();
-    		}
+    		//}
             // Swiped Left
         }
     });
