@@ -24,33 +24,39 @@ var reader;
         $("#bookmark, #show-Bookmarks").remove();
     }
 
+    const isWeChat = navigator.userAgent.toLowerCase().indexOf('micromessenger') != -1;
+    const isAndroid = navigator.userAgent.toLowerCase().indexOf('android') != -1;
     // Enable swipe support
     // I have no idea why swiperRight/swiperLeft from plugins is not working, events just don't get fired
     var touchStart = 0;
     var touchEnd = 0;
-
-    reader.rendition.on('touchstart', function(event) {
-        touchStart = event.changedTouches[0].screenX;
-    });
-    reader.rendition.on('touchend', function(event) {
-      touchEnd = event.changedTouches[0].screenX;
-        if (touchStart < touchEnd) {
-            //if(reader.book.package.metadata.direction === "rtl") {
-    		//	reader.rendition.next();
-    		//} else {
-    			reader.rendition.prev();
-    		//}
-            // Swiped Right
-        }
-        if (touchStart > touchEnd) {
-            //if(reader.book.package.metadata.direction === "rtl") {
-    		//	reader.rendition.prev();
-    		//} else {
+    if (isWeChat && isAndroid) {
+        reader.rendition.on('mousedown', function (event) {
+            touchStart = event.changedTouches[0].screenX;
+        });
+        reader.rendition.on('mouseup', function (event) {
+            touchEnd = event.changedTouches[0].screenX;
+            if (touchStart < touchEnd) {
+                reader.rendition.prev();
+            }
+            if (touchStart > touchEnd) {
                 reader.rendition.next();
-    		//}
-            // Swiped Left
-        }
-    });
+            }
+        });
+    } else {
+        reader.rendition.on('touchstart', function (event) {
+            touchStart = event.changedTouches[0].screenX;
+        });
+        reader.rendition.on('touchend', function (event) {
+            touchEnd = event.changedTouches[0].screenX;
+            if (touchStart < touchEnd) {
+                reader.rendition.prev();
+            }
+            if (touchStart > touchEnd) {
+                reader.rendition.next();
+            }
+        });
+    }
 
     /**
      * @param {string} action - Add or remove bookmark
