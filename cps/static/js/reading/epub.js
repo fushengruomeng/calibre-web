@@ -23,11 +23,9 @@ var reader;
     } else {
         $("#bookmark, #show-Bookmarks").remove();
     }
-
+/*
     const isWeChat = navigator.userAgent.toLowerCase().indexOf('micromessenger') != -1;
     const isAndroid = navigator.userAgent.toLowerCase().indexOf('android') != -1;
-    // Enable swipe support
-    // I have no idea why swiperRight/swiperLeft from plugins is not working, events just don't get fired
     var touchStart = 0;
     var touchEnd = 0;
     if (isWeChat && isAndroid) {
@@ -57,7 +55,7 @@ var reader;
             }
         });
     }
-
+*/
     /**
      * @param {string} action - Add or remove bookmark
      * @param {string|int} location - Location or zero
