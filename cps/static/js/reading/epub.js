@@ -32,10 +32,10 @@ var reader;
     var touchEnd = 0;
     if (isWeChat && isAndroid) {
         reader.rendition.on('mousedown', function (event) {
-            touchStart = event.changedTouches[0].screenX;
+            touchStart = event.screenX || event.changedTouches[0].screenX;
         });
         reader.rendition.on('mouseup', function (event) {
-            touchEnd = event.changedTouches[0].screenX;
+            touchEnd = event.screenX || event.changedTouches[0].screenX;
             if (touchStart < touchEnd) {
                 reader.rendition.prev();
             }
@@ -45,10 +45,10 @@ var reader;
         });
     } else {
         reader.rendition.on('touchstart', function (event) {
-            touchStart = event.changedTouches[0].screenX;
+            touchStart = event.screenX || event.changedTouches[0].screenX;
         });
         reader.rendition.on('touchend', function (event) {
-            touchEnd = event.changedTouches[0].screenX;
+            touchEnd = event.screenX || event.changedTouches[0].screenX;
             if (touchStart < touchEnd) {
                 reader.rendition.prev();
             }
